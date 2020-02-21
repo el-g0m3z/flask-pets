@@ -1,9 +1,10 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
+import os
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pets.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("JAWSDB_URL", "sqlite:///pets.sqlite")
 db = SQLAlchemy(app)
 
 class DictMixIn:
